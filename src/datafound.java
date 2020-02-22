@@ -54,8 +54,8 @@ public class datafound{
                     sm.put(kk[year], Integer.valueOf(1));
                 }
             }
-//            System.out.println("year\tmatch");
-//            sm.forEach((s,t)->System.out.println(s+"\t"+t));
+            System.out.println("year\tmatch");
+           sm.forEach((s,t)->System.out.println(s+"\t"+t));
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -85,8 +85,8 @@ public class datafound{
                     ws.put(dat[win], Integer.valueOf(1));
                 }
             }
-//            System.out.println("teams                          \twins");
-//            ws.forEach((w,s)->System.out.println(w+"            \t"+s));
+           System.out.println("teams                          \twins");
+            ws.forEach((w,s)->System.out.println(w+"            \t"+s));
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -113,7 +113,6 @@ public class datafound{
                     mat.put(fields[0], 1);
                 }
 
-//    System.out.println(fields[yearr]==201);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -206,63 +205,75 @@ public class datafound{
         } catch (Exception e) {
             e.printStackTrace();
         }
-        SortedMap<String, Integer> bowlersdata = new TreeMap<String, Integer>();
+        Hashtable<String, Integer[]> bowlersdata = new Hashtable<>();
+      //  SortedMap<String, Integer[]> bowlersdata = new TreeMap<String, Integer[]>();
 //        totaldata.forEach((x)->System.out.println(x));
-        totaldata.forEach((x) -> {
-            String csvFile4 = "/media/hp/New Volume/ipl/deliveries.csv";
-            int runs = 0;
-            int bowlername = 0;
-            int nobal = 0;
-            int wide = 0;
-
+String lineee="";
+String [] adata;
             try {
-                BufferedReader brff = new BufferedReader(new FileReader(csvFile4));
-                String lineff = "";
-
-                lineff = brff.readLine();
-                String[] dataff = lineff.split(",");
-
-                for (int i = 0; i != dataff.length; i++) {
-                    if (dataff[i].equals("batsman_runs")) {
-                        runs = i;
+                String csvFile4 = "/media/hp/New Volume/ipl/deliveries.csv";
+                ;
+                BufferedReader buffr = new BufferedReader(new FileReader(csvFile4));
+                lineee = buffr.readLine();
+                adata = lineee.split(",");
+                int id = 0, bowler = 0, wide = 0, noball = 0, legbye = 0, bye = 0, season = 0;
+                for (int i = 0; i != adata.length; i++) {
+                    if (adata[i].equals("total_runs")) {
+                        season = i;
                     }
-                    if (dataff[i].equals("bowler")) {
-                        bowlername = i;
+                    if (adata[i].equals("match_id")) {
+                        id = i;
                     }
-                    if (dataff[i].equals("noball_runs")) {
-                        nobal = i;
-                    }
-                    if (dataff[i].equals("wide_runs")) {
+                    if (adata[i].equals("wide_runs")) {
                         wide = i;
                     }
-                }
-                while ((lineff = brff.readLine()) != null) {
-                    String[] datf = lineff.split(",");
-                    //System.out.println(datf[0]);
-                    if(bowlersdata.containsKey(datf[bowlername])==true){
-                        String btruns=datf[runs];
-                        String nob=datf[nobal];
-                        String wd=datf[wide];
-                        int totall=Integer.parseInt(btruns)+Integer.parseInt(nob)+Integer.parseInt(wd);
-                        int edata=bowlersdata.get(datf[1]);
-                        System.out.println(edata);
-                        bowlersdata.put(datf[bowlername],edata+totall);
-
+                    if (adata[i].equals("legbye_runs")) {
+                        legbye = i;
                     }
-                    else{
-                        String btruns=datf[runs];
-                        String nob=datf[nobal];
-                        String wd=datf[wide];
-                        int total=Integer.parseInt(btruns)+Integer.parseInt(nob)+Integer.parseInt(wd);
-                        bowlersdata.put(datf[bowlername],total);
+                    if (adata[i].equals("bowler")) {
+                        bowler = i;
+                    }
+                    if (adata[i].equals("bye_runs")) {
+                        bye = i;
+                    }
+                    if (adata[i].equals("bye_runs")) {
+                        bye = i;
+                    }
+                    if (adata[i].equals("noball_runs")) {
+                        noball= i;
                     }
                 }
+                while ((lineee = buffr.readLine()) != null) {
+                    adata = lineee.split(",");
+                    if (totaldata.contains(adata[id])) {
+                        if (bowlersdata.containsKey(adata[bowler])) {
+                            Integer[] temp = bowlersdata.get(adata[bowler]);
+                            if (adata[wide].equals("0") && adata[noball].equals("0"))
+                                temp[1]++;
+                            if (adata[legbye].equals("0") && adata[bye].equals("0"))
+                                temp[0] += Integer.parseInt(adata[season]);
+                            bowlersdata.put(adata[bowler], temp);
+                        } else {
+                            Integer[] temp = {0,0};
+                            if (adata[wide].equals("0") && adata[noball].equals("0"))
+                                temp[1]++;
+                            if (adata[legbye].equals("0") && adata[bye].equals("0"))
+                                temp[0] += Integer.parseInt(adata[season]);
+                            bowlersdata.put(adata[bowler], temp);
+                        }
+                    }
+                }
+                bowlersdata.forEach((x,y)->System.out.println(x+"           \t"+y[0]+" "+y[1]));
+                HashMap<String,Float> average=new LinkedHashMap<String,Float>();
+                for(Map.Entry<String,Integer[]>ave:bowlersdata.entrySet()){
 
-            } catch (Exception e) {
+                }
+            }
+            catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            } catch (IOException e) {
                 e.printStackTrace();
             }
-
-        });
     }
 }
 
