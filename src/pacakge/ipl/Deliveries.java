@@ -5,6 +5,7 @@ public class Deliveries {
     private int matchid;
     private int innings;
     private String battingTeam;
+    private  String bowlingTeam;
     private int over;
     private int ball;
     private String batsman;
@@ -28,6 +29,7 @@ public class Deliveries {
         this.matchid = matchid;
     }
 
+
     public int getInnings() {
         return innings;
     }
@@ -41,7 +43,15 @@ public class Deliveries {
     }
 
     public void setBattingTeam(String battingTeam) {
-        this.battingTeam = battingTeam;
+        this.bowlingTeam = bowlingTeam;
+    }
+
+    public String getBowlingTeam() {
+        return bowlingTeam;
+    }
+
+    public void setBowlingTeam(String bowlingTeam) {
+        this.bowlingTeam = bowlingTeam;
     }
 
     public int getOver() {

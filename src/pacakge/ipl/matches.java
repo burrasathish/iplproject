@@ -14,6 +14,12 @@ public class matches {
     private String result;
     private String winner;
 
+//    public matches() {
+//        this.city = city;
+//        this.matchId= matchId;
+//        this.date = date;
+//    }
+
     public int getMatchId() {
         return matchId;
     }
@@ -94,13 +100,8 @@ public class matches {
         this.winner = winner;
     }
 
-    public int getWinByruns() {
-        return winByruns;
-    }
-
-    public void setWinByruns(int winByruns) {
-        this.winByruns = winByruns;
-    }
-
-    private int winByruns;
+//    public String toString() {
+//        return "Book [name=" + city + ", price=" + matchId + ", author=" + date
+//                + "]";
+//    }
 }
