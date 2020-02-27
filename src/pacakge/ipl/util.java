@@ -8,8 +8,6 @@ import java.util.List;
 import  pacakge.ipl.matches;
 
 public class util implements  data{
-
-
     public static List<matches> matchesData = new ArrayList<matches>();
 
     public void fetchmatches(){

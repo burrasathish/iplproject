@@ -12,21 +12,21 @@ public class matcheswon {
 
     public void getteamdata(){
 
+        ListIterator<matches> it = util.matchesData.listIterator();
 
-        dbconnection conn=new dbconnection();
-        Connection Con=conn.dbconnect();
-
-        try{
-            Statement stmt =Con.createStatement();
-            ResultSet rs=stmt.executeQuery("SELECT season, count(season) from matches group by season order by season");
-            while(rs.next()){
-                System.out.print(rs.getString(1)+ " ");
-                System.out.println(rs.getString(2));
+        while(it.hasNext()) {
+            //matchesPlayedPerYear.put(it);
+            String s = it.next().getWinner();
+            //System.out.println(s);
+            if (matchesWon.containsKey(s)){
+                matchesWon.put(s, matchesWon.get(s) + 1);
             }
+            else{
+                matchesWon.putIfAbsent(s, Integer.parseInt("1"));
+            }
+            // System.out.print(matchesWon);
+        }
+        System.out.print(matchesWon);
 
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
     }
 }

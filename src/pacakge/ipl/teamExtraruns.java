@@ -8,23 +8,34 @@
             import java.util.*;
 
             public class teamExtraruns {
+                ArrayList<Integer>  Idof2016=new ArrayList<Integer>();
+                TreeMap<String,Integer> ExtraRuns=new TreeMap<String,Integer>();
                 public  void getteam(){
-                    dbconnection conn=new dbconnection();
-                    Connection Con=conn.dbconnect();
+                    ListIterator<matches> it = util.matchesData.listIterator();
+                    ListIterator<Deliveries>  list= util.deliveriesData.listIterator();
+                    while(it.hasNext()){
+                        //System.out.println(it.next().getSeason());
+                        if(it.next().getSeason()==2016){
+                            Idof2016.add(it.next().getMatchId());
 
-                    try{
-                        Statement stmt =Con.createStatement();
-                        ResultSet rs=stmt.executeQuery("Select bowling_team, sum(extra_runs) from deliveries inner join matches on deliveries.match_id=matches.id where season='2016' group by bowling_team");
-
-                        System.out.println("teamname"+"                     "+ "extraruns");
-                        while(rs.next()){
-                            System.out.printf(" %1$-30s",rs.getString(1));
-                            System.out.printf("%1$-20s\n",rs.getString(2));
                         }
                     }
-                    catch (Exception e){
-                        e.printStackTrace();
+
+                    while (list.hasNext()){
+                        if(Idof2016.contains(list.next().getMatchid())){
+                            Deliveries  deli=list.next();
+                            //System.out.println(list.next().getBowlingTeam());
+                            String s=deli.getBowlingTeam();
+                            int runs=deli.getExtrRuns();
+                            //                System.out.println(runs);
+                            if(ExtraRuns.containsKey(s))
+                                ExtraRuns.put(s,ExtraRuns.get(s)+runs);
+                            ExtraRuns.putIfAbsent(s,runs);
+
+                        }
                     }
+                    System.out.print(ExtraRuns);
 
                 }
-                    }
+
+            }
