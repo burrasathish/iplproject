@@ -1,13 +1,9 @@
         package pacakge.ipl;
         import java.util.*;
-        import  java.sql.Statement;
-        import java.sql.ResultSet;
-        import  java.sql.Connection;
-
         public class Economyy {
             ArrayList<Integer>  Idof2015=new ArrayList<Integer>();
             TreeMap<String, Integer[]> ExtraRuns=new TreeMap<String, Integer[]>();
-            public  void EconomyBowler(){
+            public  TreeMap<String,Double> EconomyBowler(){
                 ListIterator<matches> it = util.matchesData.listIterator();
                 ListIterator<Deliveries>  list= util.deliveriesData.listIterator();
                 while(it.hasNext()){
@@ -19,7 +15,7 @@
                 }
 
                 while (list.hasNext()){
-                    var count=0;
+                    int count=0;
                     if(Idof2015.contains(list.next().getMatchid())){
 
                         Deliveries  deli=list.next();
@@ -60,21 +56,24 @@
                 TreeMap<String,Double> value=new TreeMap<String, Double>();
                 // HashMap<String,Double> value=new LinkedHashMap<String, Double>();
                 ExtraRuns.forEach((l,v)-> value.put( l,(double)(v[0]/(v[1]/6.0))));
-                Double vt=Double.MAX_VALUE;
-                String Bowlerr="";
-                for(Map.Entry<String,Double> ma:value.entrySet()){
 
-                    if(vt>value.get(ma.getKey())){
-                        vt=value.get(ma.getKey());
-                        Bowlerr=ma.getKey();
-                    }
+//                Double vt=Double.MAX_VALUE;
+//                String Bowlerr="";
 
+//                for(Map.Entry<String,Double> ma:value.entrySet()){
+////
+////                    if(vt>value.get(ma.getKey())){
+////                        vt=value.get(ma.getKey());
+////                        Bowlerr=ma.getKey();
+//
+//                    }
+                return  value;
                 }
-                System.out.println(Bowlerr+"   "+vt);
+
 
             }
 
-        }
+
 
 
 

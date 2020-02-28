@@ -8,11 +8,12 @@ import java.util.List;
 import  pacakge.ipl.matches;
 
 public class util implements  data{
+
+
     public static List<matches> matchesData = new ArrayList<matches>();
 
     public void fetchmatches(){
-
-        String csvFile = "matches.csv";
+        String csvFile=constants.csvFile;
         BufferedReader br = null;
         String line = "";
         String cvsSplitBy = ",";
@@ -51,19 +52,19 @@ public class util implements  data{
 
     public void datafind(String[] dataa) {
         matches match = new matches();
-        int data0 = Integer.parseInt(dataa[0]);
+        int data0 = Integer.parseInt(dataa[constants.MATCH_ID]);
         //System.out.println(data0);
-        int data1 = Integer.parseInt(dataa[1]);
+        int data1 = Integer.parseInt(dataa[constants.SEASON]);
         match.setMatchId(data0);
         match.setSeason(data1);
-        match.setCity(dataa[2]);
-        match.setDate(dataa[3]);
-        match.setTeam1(dataa[4]);
-        match.setTeam2(dataa[5]);
-        match.setTossWinner(dataa[7]);
-        match.setTossDecision(dataa[8]);
-        match.setResult(dataa[9]);
-        match.setWinner(dataa[10]);
+        match.setCity(dataa[constants.CITY]);
+        match.setDate(dataa[constants.DATE]);
+        match.setTeam1(dataa[constants.TEAM1]);
+        match.setTeam2(dataa[constants.TEAM2]);
+        match.setTossWinner(dataa[constants.TOSSWINNER]);
+        match.setTossDecision(dataa[constants.TOSSDECISION]);
+        match.setResult(dataa[constants.RESULT]);
+        match.setWinner(dataa[constants.WINNER]);
         matchesData.add(match);
 
     }
@@ -72,7 +73,7 @@ public class util implements  data{
 
     public void fetchdeliveries(){
 
-        String csvFile = "deliveries.csv";
+        String csvFile = constants.csvFil;
         BufferedReader br = null;
         String line = "";
         String cvsSplitBy = ",";
@@ -115,31 +116,31 @@ public class util implements  data{
 
         Deliveries deliveries = new Deliveries();
 
-        int data0 = Integer.parseInt(dataa[0]);
-        int data1 = Integer.parseInt(dataa[1]);
-        int data4 = Integer.parseInt(dataa[4]);
-        int data5 = Integer.parseInt(dataa[5]);
-        int data9 = Integer.parseInt(dataa[9]);
+        int data0 = Integer.parseInt(dataa[constants.MATCHESID]);
+        int data1 = Integer.parseInt(dataa[constants.INNINGS]);
+        int data4 = Integer.parseInt(dataa[constants.OVER]);
+        int data5 = Integer.parseInt(dataa[constants.BALL]);
+        int data9 = Integer.parseInt(dataa[constants.SUPPEROVER]);
         //System.out.println(data9);
-        int data10 = Integer.parseInt(dataa[10]);
-        int data11 = Integer.parseInt(dataa[11]);
-        int data12 = Integer.parseInt(dataa[12]);
-        int data13 = Integer.parseInt(dataa[13]);
-        int data14 = Integer.parseInt(dataa[14]);
-        int data15 = Integer.parseInt(dataa[15]);
-        int data16 = Integer.parseInt(dataa[16]);
-        int data17 = Integer.parseInt(dataa[17]);
+        int data10 = Integer.parseInt(dataa[constants.WIDERUNS]);
+        int data11 = Integer.parseInt(dataa[constants.BYERUNS]);
+        int data12 = Integer.parseInt(dataa[constants.LEGBYERUNS]);
+        int data13 = Integer.parseInt(dataa[constants.NOBALLRUNS]);
+        int data14 = Integer.parseInt(dataa[constants.PENALITYRUNS]);
+        int data15 = Integer.parseInt(dataa[constants.BATSMANRUNS]);
+        int data16 = Integer.parseInt(dataa[constants.EXTRARUNS]);
+        int data17 = Integer.parseInt(dataa[constants.TOTALRUNS]);
 
 
         deliveries.setMatchid(data0);
         deliveries.setInnings(data1);
-        deliveries.setBattingTeam(dataa[2]);
-        deliveries.setBowlingTeam(dataa[3]);
+        deliveries.setBattingTeam(dataa[constants.BATTINGTEAM]);
+        deliveries.setBowlingTeam(dataa[constants.BOWLINGEAM]);
         deliveries.setOver(data4);
         deliveries.setBall(data5);
-        deliveries.setBatsman(dataa[6]);
-        deliveries.setNonStriker(dataa[7]);
-        deliveries.setBowler(dataa[8]);
+        deliveries.setBatsman(dataa[constants.BATSMAN]);
+        deliveries.setNonStriker(dataa[constants.NONSTRIKER]);
+        deliveries.setBowler(dataa[constants.BOWLER]);
         deliveries.setIssupperover(data9);
         deliveries.setWideruns(data10);
         deliveries.setByeRuns(data11);
