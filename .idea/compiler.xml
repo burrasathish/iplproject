@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="ipldatafound" target="1.5" />
+      <module name="ipldatafound" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -3,9 +3,9 @@
         public class Economyy {
             ArrayList<Integer>  Idof2015=new ArrayList<Integer>();
             TreeMap<String, Integer[]> ExtraRuns=new TreeMap<String, Integer[]>();
-            public  TreeMap<String,Double> EconomyBowler(){
-                ListIterator<matches> it = util.matchesData.listIterator();
-                ListIterator<Deliveries>  list= util.deliveriesData.listIterator();
+            public  TreeMap<String,Double> EconomyBowler(List<matches>matchesList,List<Deliveries>deliveriesList){
+                ListIterator<matches> it = matchesList.listIterator();
+                ListIterator<Deliveries>  list= deliveriesList.listIterator();
                 while(it.hasNext()){
                     //System.out.println(it.next().getSeason());
                     if(it.next().getSeason()==2015){
